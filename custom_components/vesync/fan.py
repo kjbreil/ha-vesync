@@ -6,6 +6,7 @@ import math
 from typing import Any
 
 from homeassistant.components.fan import FanEntity, FanEntityFeature
+from homeassistant.components.binary_sensor import BinarySensorEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
@@ -253,6 +254,11 @@ class VeSyncHumidiferMistHA(VeSyncDevice, FanEntity):
         )
         self.schedule_update_ha_state()
 
+    @property
+    def is_on(self) -> bool:
+        """Return True if device is on."""
+        return self.device.enabled
+
     def turn_on(
         self,
         **kwargs: Any,
@@ -303,6 +309,11 @@ class VeSyncHumidiferWarmMistHA(VeSyncDevice, FanEntity):
             )
         )
         self.schedule_update_ha_state()
+
+    @property
+    def is_on(self) -> bool:
+        """Return True if device is on."""
+        return self.device.warm_mist_enabled
 
     def turn_on(
         self,

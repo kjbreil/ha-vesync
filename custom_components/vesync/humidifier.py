@@ -157,6 +157,11 @@ class VeSyncHumidifierHA(VeSyncDevice, HumidifierEntity):
         """Return the humidity we try to reach."""
         return self.device.auto_humidity
 
+    @property
+    def is_on(self) -> bool:
+        """Return True if device is on."""
+        return self.device.enabled
+
     def set_humidity(self, humidity: int) -> None:
         """Set new target humidity."""
         self.device.set_humidity(humidity)

@@ -66,6 +66,7 @@ async def async_setup_entry(
         fans.extend(device_dict[VS_FANS])
         platforms.append(Platform.FAN)
         platforms.append(Platform.HUMIDIFIER)
+        platforms.append(Platform.BINARY_SENSOR)
 
     if device_dict[VS_LIGHTS]:
         lights.extend(device_dict[VS_LIGHTS])
